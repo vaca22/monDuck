@@ -1,6 +1,6 @@
 #include <iostream>
 
-#define NUM 100000000
+#define NUM 1000000
 
 typedef struct {
     float x;
@@ -39,15 +39,30 @@ bool isSameSign(float *n_array, int len) {
     return true;
 }
 
+
+
 bool isInSemiCircle(Point *p_array, int len) {
     float *c3 = static_cast<float *>(malloc((len - 1) * sizeof(float)));
-    for (int k = 1; k < len; k++) {
-        c3[k - 1] = cross_3(p_array[0], p_array[k]);
+
+    for(int j=0;j<len;j++){
+        int index=0;
+        for (int k = 0; k < len; k++) {
+            if(k!=j){
+                c3[index] = cross_3(p_array[j], p_array[k]);
+                index++;
+            }
+        }
+        bool result = isSameSign(c3, len - 1);
+        if(result){
+            free(c3);
+            return true;
+        }
     }
-    bool result = isSameSign(c3, len - 1);
+
     free(c3);
-    return result;
+    return false;
 }
+
 
 
 int main() {
