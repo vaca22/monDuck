@@ -1,4 +1,8 @@
 #include <iostream>
+#include <chrono>
+using namespace std;
+using namespace std::chrono;
+
 
 #define NUM 1000000
 
@@ -66,6 +70,8 @@ bool isInSemiCircle(Point *p_array, int len) {
 
 
 int main() {
+    auto start = high_resolution_clock::now();
+
     int s = 0;
     int p_num = 4;
 
@@ -83,5 +89,11 @@ int main() {
     float p = (float) s / NUM;
     std::cout << "probability: " << p << std::endl;
     free(p_array);
+
+
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    cout << "Time taken by function: "
+         << duration.count() << " microseconds" << endl;
     return 0;
 }
