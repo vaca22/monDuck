@@ -4,7 +4,7 @@ using namespace std;
 using namespace std::chrono;
 
 
-#define NUM 1000000
+#define NUM 10000000
 
 typedef struct {
     float x;
